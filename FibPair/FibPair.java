@@ -5,27 +5,27 @@
 public class FibPair {
     public static void main(String[] commandLine) {
         System.out.println();
-        
+
         // calculate next pair, Fibonacci-style
         nextText( 8, 5, "[13,8]");
         nextText( 3, 2, "[5,3]");
-        
+
         /* optional extra education: Fibonacci numbers
            recursively, and in linear time */
-        // oneFib(  0, 0);  // base case
-        // oneFib(  1, 1);  // smallest recursive case, or base case
-        // oneFib(  2, 1);  // recursive case, sometimes smallest
-        // oneFib(  7, 13); // recursive case
+        oneFib(  0, 0);  // base case
+        oneFib(  1, 1);  // smallest recursive case, or base case
+        oneFib(  2, 1);  // recursive case, sometimes smallest
+        oneFib(  7, 13); // recursive case
 
-        // System.out.println( "no noticeable delay before...");
-        // oneFib( 46, 1836311903);
-          /* value from 
+        System.out.println( "no noticeable delay before...");
+        oneFib( 46, 1836311903);
+          /* value from
              stackoverflow.com/questions/15065088/upper-limits-for-fibonnacci
              but adjusted because they index from 1. Who ARE these people?
            */
     }
-    
-    
+
+
     /**
       test nextPairAfter
      */
@@ -34,7 +34,7 @@ public class FibPair {
                                 , String expect
                                 ) {
 
-        pair = new Pair(bigger,smaller);
+        Pair pair = new Pair<Integer>((int) bigger, (int) smaller);
 
         System.out.println(
             "The pair after "
@@ -54,8 +54,8 @@ public class FibPair {
         the small number is the the old big number
      */
     private static Pair nextPairAfter(Pair pair) {
-        Pair next = new Pair( (Integer)pair.getFirst() + (Integer)pair.getSecond(), (Integer)pair.getFirst());
-	return next;
+        Pair next = new Pair<Integer>((int) pair.getFirst() + (int) pair.getSecond(), (int) pair.getFirst());
+	      return next;
     }
 
 
@@ -78,15 +78,17 @@ public class FibPair {
       Calculate a Fibonacci number recursively
       and in linear time.
       optional extra education
-      
+
       @return the nth Fibonacci number
               n >= 0
      */
     private static Integer fib( int n) {
-	Pair pair = new Pair(1,1);
-        for (int count = 0; count < n; n++) {
-		pair = nextPairAfter(pair);
-	}
-	return (Integer) pair.getSecond();
+	      Pair pair = new Pair<Integer>(1,0);
+
+        for (int count = 0; count < n; count++) {
+		        pair = nextPairAfter(pair);
+	      }
+
+	      return (Integer) pair.getSecond();
     }
 }
